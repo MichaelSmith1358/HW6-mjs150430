@@ -1,21 +1,14 @@
-#
-# UTD CS3377 CDK Example
-# Dr. Perkins
-# stephen.perkins@utdallas.edu
-#
+# Michael Smith
+# mjs150430@utdallas.edu
+# CS3377.501
 
 CXX = g++
-CXXFLAGS = -Wall -g 
+CXXFLAGS = -Wall -g -std=c++11
 CPPFLAGS = -I/scratch/perkins/include
 LDFLAGS = -L/scratch/perkins/lib
 LDLIBS = -lcdk -lcurses 
 
-
-#
-# PROJECTNAME is a descriptive name used for the backup target
-# This should not contain spaces or special characters
-
-EXECFILE = cdkexample
+EXECFILE = proj6
 
 OBJS = cdkexample.o
 
