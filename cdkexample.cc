@@ -23,6 +23,7 @@
 
 using namespace std;
 
+//class definition for Binary File Header
 class BinaryFileHeader {
 public:
 
@@ -33,6 +34,7 @@ public:
 
 const int maxRecordStringLength = 25;
 
+//class definition for Binary File Record
 class BinaryFileRecord{
 public:
 
@@ -78,10 +80,13 @@ int main()
 			  MATRIX_NAME_STRING, (char **) rowTitles, (char **) columnTitles, boxWidths,
 				     boxTypes, 1, 1, ' ', ROW, true, true, false);
   
+  //create instance of BinaryFileHeader class
   BinaryFileHeader *binHead = new BinaryFileHeader();
 
+  //create instance of BinaryFileRecord class
   BinaryFileRecord *binRec = new BinaryFileRecord();
-
+  
+  //open file for reading
   ifstream binInFile ("cs3377.bin", ios::in | ios::binary);
   binInFile.read((char *) binHead, sizeof(BinaryFileHeader));
   
@@ -94,6 +99,7 @@ int main()
   /* Display the Matrix */
   drawCDKMatrix(myMatrix, true);
   
+  //get values from file and write to matrix
   stringstream stream;
   stream << uppercase << hex << binHead->magicNumber;
   string result(stream.str());
@@ -108,6 +114,7 @@ int main()
   result = stream.str();
   setCDKMatrixCell(myMatrix,1,3,string("NumRecords: "+ string(result.c_str())).c_str());
   
+  //loop for specific amount
   for(int z = 2; z<6; z++){
     binInFile.read((char *) binRec, sizeof(BinaryFileRecord));
     if(binInFile){
